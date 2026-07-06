@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FashionWeb - Tin tức</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand">👗 FashionWeb</div>
+    <nav class="main-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="news.html" class="active">Tin tức</a>
+      <a href="detail.html">Chi tiết</a>
+      <a href="comment.html">Phản hồi</a>
+      <a href="login.html">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <h1 class="page-title">Tin tức & Xu hướng thời trang</h1>
+
+    <div class="filter-bar">
+      <button class="filter-btn active-filter" data-filter="all">Tất cả</button>
+      <button class="filter-btn" data-filter="trong-nuoc">Trong nước</button>
+      <button class="filter-btn" data-filter="ngoai-nuoc">Ngoài nước</button>
+      <button class="filter-btn" data-filter="su-kien">Sự kiện</button>
+    </div>
+
+    <div class="news-grid" id="newsGrid">
+
+      <div class="news-card" data-category="trong-nuoc">
+        <div class="news-img">👗</div>
+        <div class="news-body">
+          <span class="news-tag">Trong nước</span>
+          <h3>Thời trang Việt Nam tại tuần lễ thời trang quốc tế</h3>
+          <p>Các nhà thiết kế Việt Nam gây ấn tượng mạnh tại sân chơi quốc tế với bộ sưu tập lấy cảm hứng từ văn hóa dân tộc.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+      <div class="news-card" data-category="ngoai-nuoc">
+        <div class="news-img">✨</div>
+        <div class="news-body">
+          <span class="news-tag">Ngoài nước</span>
+          <h3>Paris Fashion Week 2025 — Điểm nhấn nổi bật</h3>
+          <p>Những bộ sưu tập ấn tượng nhất từ các thương hiệu Chanel, Dior, Louis Vuitton tại tuần lễ thời trang Paris.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+      <div class="news-card" data-category="su-kien">
+        <div class="news-img">🎪</div>
+        <div class="news-body">
+          <span class="news-tag">Sự kiện</span>
+          <h3>Vietnam Fashion Show 2025 — Đêm hội thời trang</h3>
+          <p>Sự kiện thời trang lớn nhất năm quy tụ hàng trăm nhà thiết kế và người mẫu hàng đầu Việt Nam.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+      <div class="news-card" data-category="trong-nuoc">
+        <div class="news-img">👒</div>
+        <div class="news-body">
+          <span class="news-tag">Trong nước</span>
+          <h3>Xu hướng streetwear Việt Nam 2025</h3>
+          <p>Giới trẻ Việt đang tạo nên làn sóng streetwear riêng với sự pha trộn giữa văn hóa Đông và Tây.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+      <div class="news-card" data-category="ngoai-nuoc">
+        <div class="news-img">👠</div>
+        <div class="news-body">
+          <span class="news-tag">Ngoài nước</span>
+          <h3>Y2K Fashion — Trào lưu quay trở lại</h3>
+          <p>Phong cách thời trang những năm 2000 đang bùng nổ trở lại trên toàn thế giới với thế hệ Gen Z.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+      <div class="news-card" data-category="su-kien">
+        <div class="news-img">🏆</div>
+        <div class="news-body">
+          <span class="news-tag">Sự kiện</span>
+          <h3>Giải thưởng Nhà thiết kế xuất sắc 2025</h3>
+          <p>Lễ trao giải thưởng thường niên tôn vinh những tài năng xuất sắc trong ngành thời trang Việt Nam.</p>
+          <a href="detail.html" class="btn-link">Đọc thêm →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 FashionWeb — Thời trang trong và ngoài nước</p>
+  </footer>
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
