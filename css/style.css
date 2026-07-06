@@ -48,25 +48,27 @@ body {
 }
 
 
+
 .hero-container {
   position: relative;
   width: 100%;
-  height: 520px; /* Chiều cao hiển thị của phần banner */
+  height: 500px; /* Chiều cao hiển thị cố định của banner */
   overflow: hidden;
+  display: block;
 }
 
-
+/* Ép bức ảnh nằm ở HTML làm ảnh nền bao phủ kín khung hình, không bị bóp méo */
 .hero-bg-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Giúp ảnh tự co giãn đẹp, không bị méo */
+  object-fit: cover; /* Tự động co giãn thông minh không làm biến dạng ảnh */
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/* Lớp phủ mờ tối màu bao bọc lên bức ảnh để làm nền sau */
+/* Lớp phủ mờ tối màu bao bọc lên bức ảnh để làm nền sau + Căn chữ vào giữa */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -74,43 +76,69 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.45); /* Lớp phủ mờ giúp ảnh nền dịu xuống */
+  
+  /* Sử dụng hệ thống Flexbox đưa khối nội dung vào CHÍNH GIỮA tuyệt đối, chống lệch */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2; /* Nằm đè lên trên bức ảnh */
-  padding: 0 20px;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;     /* Căn giữa theo chiều dọc */
+  z-index: 2; /* Nằm đè lên trên tấm ảnh bg */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-
-.hero-box-content {
-  background: rgba(255, 255, 255, 0.88); /* Nền trắng trong suốt nhẹ */
+/* Khung màu trắng mờ chứa nội dung chữ ở giữa ảnh (Glassmorphism phong cách mờ giống mẫu) */
+.hero-content {
+  background: rgba(255, 255, 255, 0.9); /* Nền hộp màu trắng trong suốt nhẹ */
   backdrop-filter: blur(10px); /* Hiệu ứng làm mờ kính phía sau */
   -webkit-backdrop-filter: blur(10px);
-  padding: 45px 50px;
+  padding: 40px 30px;
   border-radius: 16px; /* Bo tròn góc hộp mềm mại */
-  max-width: 680px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* Đổ bóng khối giúp hộp nổi lên */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px; /* Chiều rộng tối đa của hộp chữ */
+  width: 100%; /* Tự động co giãn vừa vặn trên màn hình điện thoại */
+  text-align: center; /* Căn chữ bên trong luôn nằm giữa hộp */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Đổ bóng khối giúp hộp nổi hẳn lên */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box; /* Ngăn chặn padding làm nở hộp gây lệch */
 }
 
-/* Chữ tiêu đề h1 nằm trong khung hộp màu trắng mờ */
-.hero-box-content h1 {
+/* Tiêu đề chữ H1 bên trong hộp */
+.hero-content h1 {
   font-size: 36px;
-  color: #1a1a2e; /* Màu tím đen chủ đạo */
+  color: #1a1a2e; /* Màu chữ tối để nổi bật trên nền trắng */
+  margin-top: 0;
   margin-bottom: 14px;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
-/* Đoạn mô tả p nằm trong khung hộp trắng mờ */
-.hero-box-content p {
+/* Đoạn mô tả ngắn P bên trong hộp */
+.hero-content p {
   font-size: 16px;
   color: #444444; /* Màu xám đậm dễ đọc */
-  margin-bottom: 28px;
+  margin-top: 0;
+  margin-bottom: 25px;
   line-height: 1.6;
+}
+
+/* Nút bấm bên trong hộp chữ */
+.hero-content .btn {
+  display: inline-block;
+  background: #e91e8c;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-content .btn:hover {
+  background: #c2185b;
+  transform: scale(1.03); /* Phóng nhẹ một chút khi di chuột cực đẹp */
 }
 
 
@@ -172,25 +200,7 @@ body {
   margin-bottom: 16px;
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  background: #e91e8c;
-  color: #fff;
-  padding: 10px 24px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn:hover {
-  background: #c2185b;
-}
-
+/* Buttons chung */
 .btn-link {
   color: #e91e8c;
   text-decoration: none;
