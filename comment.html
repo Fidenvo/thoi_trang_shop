@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FashionWeb - Phản hồi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
+  <header class="site-header">
+    <div class="brand">THỜI TRANG</div>
+    <nav class="main-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="news.html">Tin tức</a>
+      <a href="detail.html">Chi tiết</a>
+      <a href="comment.html" class="active">Phản hồi</a>
+      <a href="login.html">Đăng nhập</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <h1 class="page-title">💬 Phản hồi ý kiến</h1>
+
+    <div class="comment-wrapper">
+
+      <form class="comment-form" id="commentForm">
+        <label for="cname">Họ tên:</label>
+        <input type="text" id="cname" name="cname" placeholder="Nhập họ tên">
+
+        <label for="cemail">Email:</label>
+        <input type="email" id="cemail" name="cemail" placeholder="Nhập email">
+
+        <label for="ctopic">Chủ đề:</label>
+        <select id="ctopic" name="ctopic">
+          <option value="">-- Chọn chủ đề --</option>
+          <option value="xu-huong">Xu hướng thời trang</option>
+          <option value="su-kien">Sự kiện</option>
+          <option value="gop-y">Góp ý website</option>
+        </select>
+
+        <label for="ccontent">Nội dung:</label>
+        <textarea id="ccontent" name="ccontent" rows="5" placeholder="Nhập nội dung phản hồi..."></textarea>
+
+        <p id="formMsg"></p>
+        <input type="submit" value="Gửi phản hồi" class="btn">
+      </form>
+
+      <div class="comment-list" id="commentList">
+        <h3>Phản hồi gần đây</h3>
+
+        <div class="comment-item">
+          <p class="comment-author">👤 Nguyễn Thị Mai</p>
+          <p class="comment-topic">Chủ đề: Xu hướng thời trang</p>
+          <p class="comment-text">Website rất hay, tôi rất thích các bài viết về xu hướng màu sắc 2025!</p>
+        </div>
+
+        <div class="comment-item">
+          <p class="comment-author">👤 Trần Văn Nam</p>
+          <p class="comment-topic">Chủ đề: Sự kiện</p>
+          <p class="comment-text">Mong website cập nhật thêm nhiều sự kiện thời trang trong nước hơn.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 FashionWeb — Thời trang trong và ngoài nước</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
