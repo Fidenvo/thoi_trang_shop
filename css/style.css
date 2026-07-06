@@ -47,87 +47,73 @@ body {
   font-weight: bold;
 }
 
-/* Hero - ĐÃ SỬA: Chèn ảnh nền mờ giống trang mẫu */
-.hero {
-  background: linear-gradient(rgba(26, 26, 46, 0.75), rgba(233, 30, 140, 0.55)), url('anh-nen-banner.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #fff;
-  text-align: center;
-  padding: 120px 32px;
-}
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 12px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-.hero p {
-  font-size: 18px;
-  margin-bottom: 24px;
-  color: #eee;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
 .hero-container {
   position: relative;
   width: 100%;
-  height: 450px; /* Chiều cao hiển thị của phần banner */
+  height: 520px; /* Chiều cao hiển thị của phần banner */
   overflow: hidden;
 }
 
-/* Định dạng cho bức ảnh nằm ở HTML làm ảnh nền */
+
 .hero-bg-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Giúp ảnh không bị méo khi co giãn */
+  object-fit: cover; /* Giúp ảnh tự co giãn đẹp, không bị méo */
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/* Lớp phủ màu tối (Overlay) nằm đè lên ảnh để làm nổi bật chữ */
+/* Lớp phủ mờ tối màu bao bọc lên bức ảnh để làm nền sau */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.55); /* Màu tối mờ bao phủ lên ảnh */
+  background: rgba(0, 0, 0, 0.45); /* Lớp phủ mờ giúp ảnh nền dịu xuống */
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  z-index: 2; /* Nằm trên bức ảnh */
+  z-index: 2; /* Nằm đè lên trên bức ảnh */
   padding: 0 20px;
 }
 
-/* Khung chứa nội dung chữ */
-.hero-content {
-  max-width: 800px;
+
+.hero-box-content {
+  background: rgba(255, 255, 255, 0.88); /* Nền trắng trong suốt nhẹ */
+  backdrop-filter: blur(10px); /* Hiệu ứng làm mờ kính phía sau */
+  -webkit-backdrop-filter: blur(10px);
+  padding: 45px 50px;
+  border-radius: 16px; /* Bo tròn góc hộp mềm mại */
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* Đổ bóng khối giúp hộp nổi lên */
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Định dạng tiêu đề chữ trắng */
-.hero-content h1 {
-  font-size: 46px;
-  color: #ffffff;
-  margin-bottom: 16px;
+/* Chữ tiêu đề h1 nằm trong khung hộp màu trắng mờ */
+.hero-box-content h1 {
+  font-size: 36px;
+  color: #1a1a2e; /* Màu tím đen chủ đạo */
+  margin-bottom: 14px;
   font-weight: bold;
   text-transform: uppercase;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
 }
 
-/* Định dạng đoạn văn mô tả */
-.hero-content p {
-  font-size: 18px;
-  color: #eeeeee;
-  margin-bottom: 30px;
-  line-height: 1.5;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+/* Đoạn mô tả p nằm trong khung hộp trắng mờ */
+.hero-box-content p {
+  font-size: 16px;
+  color: #444444; /* Màu xám đậm dễ đọc */
+  margin-bottom: 28px;
+  line-height: 1.6;
 }
-/* Container */
+
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -167,24 +153,10 @@ body {
   box-shadow: 0 12px 20px rgba(0,0,0,0.1);
 }
 
-/* ĐÃ SỬA: Định dạng cho hình ảnh của Card */
 .card-img {
+  font-size: 40px;
   text-align: center;
-  margin-bottom: 16px;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-
-.card:hover .card-img img {
-  transform: scale(1.05);
+  margin-bottom: 12px;
 }
 
 .card h3 {
@@ -307,34 +279,27 @@ body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* ĐÃ SỬA: Định dạng khối ảnh bài viết tin tức */
 .news-img {
-  width: 240px;
-  height: 160px;
+  width: 120px;
+  background: #fdf6f0;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  overflow: hidden;
-}
-
-.news-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .news-body {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .news-tag {
-  align-self: flex-start;
+  display: inline-block;
   background: #fdf6f0;
   color: #e91e8c;
   font-size: 11px;
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 2px 8px;
   border-radius: 4px;
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -343,7 +308,7 @@ body {
 .news-body h3 {
   font-size: 18px;
   color: #1a1a2e;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .news-body p {
@@ -373,19 +338,13 @@ body {
   margin-bottom: 24px;
 }
 
-/* ĐÃ SỬA: Khung ảnh đại diện bài viết lớn trang Chi tiết */
 .article-img {
-  width: 100%;
-  max-height: 400px;
-  overflow: hidden;
+  background: #fdf6f0;
+  font-size: 64px;
+  text-align: center;
+  padding: 40px 0;
   border-radius: 8px;
   margin-bottom: 24px;
-}
-
-.article-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .article-body {
