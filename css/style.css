@@ -1,5 +1,6 @@
+
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ép border và padding không được làm nở kích thước thẻ */
   margin: 0;
   padding: 0;
 }
@@ -8,16 +9,20 @@ body {
   font-family: Arial, sans-serif;
   background: #fdf6f0;
   color: #333;
+  overflow-x: hidden; /* Ngăn chặn vỡ khung sinh ra thanh cuộn ngang khi phóng to */
+  width: 100%;
 }
 
-/* Header */
+
 .site-header {
   background: #1a1a2e;
   color: #fff;
-  padding: 14px 32px;
+  padding: 14px 5%; /* Dùng % để khoảng cách hai bên tự thu hẹp khi nhỏ màn hình */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Tự động xuống dòng mượt mà nếu phóng quá to */
+  gap: 15px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -27,11 +32,13 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: #e91e8c;
+  white-space: nowrap;
 }
 
 .main-nav {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap; /* Giúp các nút menu không bị tràn ra ngoài màn hình */
 }
 
 .main-nav a {
@@ -39,6 +46,7 @@ body {
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .main-nav a:hover,
@@ -47,81 +55,72 @@ body {
   font-weight: bold;
 }
 
-
-
 .hero-container {
   position: relative;
   width: 100%;
-  height: 500px; /* Chiều cao hiển thị cố định của banner */
+  height: 65vh; /* Sử dụng vh (chiều cao màn hình) thay vì px để tự co giãn theo trình duyệt */
+  min-height: 400px; /* Chiều cao tối thiểu để không bị bóp quá nhỏ trên điện thoại */
   overflow: hidden;
   display: block;
 }
 
-/* Ép bức ảnh nằm ở HTML làm ảnh nền bao phủ kín khung hình, không bị bóp méo */
+/* Ảnh nền bám chặt 100% khung cha */
 .hero-bg-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Tự động co giãn thông minh không làm biến dạng ảnh */
+  object-fit: cover; /* Giữ nguyên tỷ lệ ảnh đẹp, không méo hình khi co giãn */
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-/* Lớp phủ mờ tối màu bao bọc lên bức ảnh để làm nền sau + Căn chữ vào giữa */
+/* Lớp phủ mờ tối màu + Hệ thống Flexbox khóa chặt tâm giữa */
 .hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.45); /* Lớp phủ mờ giúp ảnh nền dịu xuống */
+  background: rgba(0, 0, 0, 0.45);
   
-  /* Sử dụng hệ thống Flexbox đưa khối nội dung vào CHÍNH GIỮA tuyệt đối, chống lệch */
   display: flex;
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center;     /* Căn giữa theo chiều dọc */
-  z-index: 2; /* Nằm đè lên trên tấm ảnh bg */
+  justify-content: center; /* Luôn căn giữa hộp chữ theo chiều ngang */
+  align-items: center;     /* Luôn căn giữa hộp chữ theo chiều dọc */
+  z-index: 2;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-/* Khung màu trắng mờ chứa nội dung chữ ở giữa ảnh (Glassmorphism phong cách mờ giống mẫu) */
+/* Khung hộp nội dung trắng mờ tự động co giãn thông minh */
 .hero-content {
-  background: rgba(255, 255, 255, 0.9); /* Nền hộp màu trắng trong suốt nhẹ */
-  backdrop-filter: blur(10px); /* Hiệu ứng làm mờ kính phía sau */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 40px 30px;
-  border-radius: 16px; /* Bo tròn góc hộp mềm mại */
-  max-width: 600px; /* Chiều rộng tối đa của hộp chữ */
-  width: 100%; /* Tự động co giãn vừa vặn trên màn hình điện thoại */
-  text-align: center; /* Căn chữ bên trong luôn nằm giữa hộp */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Đổ bóng khối giúp hộp nổi hẳn lên */
+  border-radius: 16px;
+  max-width: 600px; /* Giới hạn độ rộng tối đa để chữ không bị bè ra quá dài */
+  width: 90%;       /* Chiếm 90% chiều rộng màn hình nếu ở giao diện nhỏ/phóng to */
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: border-box; /* Ngăn chặn padding làm nở hộp gây lệch */
 }
 
-/* Tiêu đề chữ H1 bên trong hộp */
 .hero-content h1 {
-  font-size: 36px;
-  color: #1a1a2e; /* Màu chữ tối để nổi bật trên nền trắng */
-  margin-top: 0;
+  font-size: clamp(24px, 4vw, 36px); /* Kích thước chữ tự động to nhỏ theo tỷ lệ màn hình */
+  color: #1a1a2e;
   margin-bottom: 14px;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.2;
 }
 
-/* Đoạn mô tả ngắn P bên trong hộp */
 .hero-content p {
-  font-size: 16px;
-  color: #444444; /* Màu xám đậm dễ đọc */
-  margin-top: 0;
+  font-size: clamp(14px, 2vw, 16px); /* Tự động điều chỉnh kích thước đoạn văn */
+  color: #444444;
   margin-bottom: 25px;
   line-height: 1.6;
 }
 
-/* Nút bấm bên trong hộp chữ */
 .hero-content .btn {
   display: inline-block;
   background: #e91e8c;
@@ -131,24 +130,24 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  transition: background 0.2s, transform 0.2s;
+  transition: all 0.2s;
   border: none;
   cursor: pointer;
 }
 
 .hero-content .btn:hover {
   background: #c2185b;
-  transform: scale(1.03); /* Phóng nhẹ một chút khi di chuột cực đẹp */
+  transform: scale(1.03);
 }
 
-
+/* Container thân trang */
 .container {
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* Sections */
 .section {
   margin-bottom: 50px;
 }
@@ -161,10 +160,10 @@ body {
   padding-left: 10px;
 }
 
-/* Cards Grid */
+/* Khung lưới 3 cột - Tự động chuyển thành 2 cột hoặc 1 cột khi phóng to/thu nhỏ màn hình */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Chống méo lệch thẻ */
   gap: 24px;
 }
 
@@ -200,7 +199,6 @@ body {
   margin-bottom: 16px;
 }
 
-/* Buttons chung */
 .btn-link {
   color: #e91e8c;
   text-decoration: none;
@@ -256,6 +254,7 @@ body {
   justify-content: center;
   gap: 12px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
 .filter-btn {
@@ -287,10 +286,12 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  flex-wrap: wrap; /* Tự động xuống dòng ảnh/chữ khi zoom to màn hình */
 }
 
 .news-img {
   width: 120px;
+  min-height: 120px;
   background: #fdf6f0;
   font-size: 40px;
   display: flex;
@@ -301,6 +302,8 @@ body {
 
 .news-body {
   padding: 20px;
+  flex: 1;
+  min-width: 250px;
 }
 
 .news-tag {
@@ -315,107 +318,27 @@ body {
   text-transform: uppercase;
 }
 
-.news-body h3 {
-  font-size: 18px;
-  color: #1a1a2e;
-  margin-bottom: 6px;
-}
-
-.news-body p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
 /* Detail Page */
 .article {
   background: #fff;
-  padding: 32px;
+  padding: clamp(15px, 5vw, 32px);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .article-title {
-  font-size: 32px;
+  font-size: clamp(22px, 5vw, 32px);
   color: #1a1a2e;
   margin-bottom: 10px;
-}
-
-.article-meta {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 24px;
-}
-
-.article-img {
-  background: #fdf6f0;
-  font-size: 64px;
-  text-align: center;
-  padding: 40px 0;
-  border-radius: 8px;
-  margin-bottom: 24px;
-}
-
-.article-body {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #444;
-}
-
-.article-body p {
-  margin-bottom: 16px;
-}
-
-.article-body h2 {
-  font-size: 20px;
-  color: #1a1a2e;
-  margin: 24px 0 12px 0;
-}
-
-.article-related {
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid #eee;
-}
-
-.article-related h3 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.article-related ul {
-  list-style: none;
-}
-
-.article-related li {
-  margin: 8px 0;
-}
-
-.article-related a {
-  color: #444;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.article-related a:hover {
-  color: #e91e8c;
-  text-decoration: underline;
-}
-
-.article-actions {
-  margin-top: 30px;
-  display: flex;
-  gap: 16px;
 }
 
 /* Comment Page */
 .comment-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Đổi sang Grid co giãn thông minh */
   gap: 40px;
   background: #fff;
-  padding: 32px;
+  padding: clamp(15px, 4vw, 32px);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
@@ -426,16 +349,7 @@ body {
   gap: 14px;
 }
 
-.comment-form label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #1a1a2e;
-}
-
-.comment-form input[type="text"],
-.comment-form input[type="email"],
-.comment-form select,
-.comment-form textarea {
+.comment-form input, .comment-form select, .comment-form textarea {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -443,119 +357,15 @@ body {
   width: 100%;
 }
 
-#formMsg {
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.comment-list h3 {
-  margin-bottom: 16px;
-  color: #1a1a2e;
-}
-
-.comment-item {
-  background: #fdf6f0;
-  padding: 14px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  border-left: 4px solid #1a1a2e;
-}
-
-.comment-author {
-  font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.comment-topic {
-  font-size: 12px;
-  color: #e91e8c;
-  margin-bottom: 6px;
-}
-
-.comment-text {
-  font-size: 14px;
-  line-height: 1.4;
-}
-
 /* Login Page */
 .login-box {
   max-width: 450px;
+  width: 90%;
   margin: 40px auto;
   background: #fff;
   padding: 40px 32px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-}
-
-.login-box h1 {
-  font-size: 24px;
-  color: #1a1a2e;
-  margin-bottom: 10px;
-}
-
-.login-box p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  text-align: left;
-}
-
-.login-form label {
-  font-size: 13px;
-  font-weight: bold;
-  color: #1a1a2e;
-}
-
-.login-form input[type="text"],
-.login-form input[type="password"] {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  width: 100%;
-}
-
-.login-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-}
-
-.login-options a {
-  color: #e91e8c;
-  text-decoration: none;
-}
-
-.login-form input[type="submit"] {
-  background: #e91e8c;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.2s;
-}
-
-.login-form input[type="submit"]:hover {
-  background: #c2185b;
-}
-
-#loginMsg {
-  font-size: 13px;
-  font-weight: bold;
-  text-align: center;
 }
 
 /* Footer */
@@ -566,4 +376,5 @@ body {
   padding: 20px;
   font-size: 13px;
   margin-top: 60px;
+  width: 100%;
 }
